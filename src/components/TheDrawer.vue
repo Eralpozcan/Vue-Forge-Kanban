@@ -3,9 +3,10 @@ import { Drawer, DrawerContent } from "@progress/kendo-vue-layout";
 import { useRouter } from 'vue-router';
 import { computed,ref} from 'vue';
 import router from "@/router";
+import { useLocalStorage} from '@vueuse/core';
 
 const selectedId = ref(0);
-const expanded = ref(false);
+const expanded = useLocalStorage('vf-drawer-expanded', false);
 const expandedIcons = computed (() => 
     expanded.value ? 'k-i-arrow-left' : 'k-i-arrow-right'
 );
