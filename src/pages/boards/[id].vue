@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import AppImageDropzone from "../../components/AppImageDropzone.vue";
+import AppImageDropzone from "../../components/AppImageDropzone";
 </script>
 
 <template>
