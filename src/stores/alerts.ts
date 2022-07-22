@@ -23,7 +23,25 @@ export interface Alert extends AlertOptions {
 
 
 export const useAlerts = defineStore("alerts", {
-
-
+    state: () => ({
+        items: [] as Alert[],
+    }),
+    actions: {
+        notify(message: string,style:AlertStyle, options?: AlertOptions) {
+            const opts = { ...defaultOptions,style,...options };
+            const id = this.state.items.length + 1;
+            const alert: Alert = {
+                id,
+                message,
+                ...opts,
+            };
+            this.state.items.push(alert);
+            if (opts.timeout !== false) {
+                setTimeout(() => {
+                    this.remove(id);
+                }, opts.timeout);
+            }
+        }
+    },
 
 });
