@@ -66,3 +66,7 @@ export const useAlerts = defineStore("alerts", {
     }
   },
 });
+
+if (import.meta.hot) {
+  import.meta.hot.accept(acceptHMRUpdate(useAlerts, import.meta.hot));
+}
