@@ -8,8 +8,13 @@ import { ApolloClient, createHttpLink, gql, InMemoryCache } from '@apollo/client
 import { DefaultApolloClient } from '@vue/apollo-composable'
 
 
+// const httpLink = createHttpLink({
+//   uri: 'https://api.8base.com/cl5ittcmt05gm09kz812y1b3t'
+// })
+
+
 const httpLink = createHttpLink({
-  uri: 'https://api.8base.com/cl5ittcmt05gm09kz812y1b3t'
+  uri: 'https://api.8base.com/cl5gz1hl6004709mjgvyf0gx3'
 })
 
 const cache = new InMemoryCache()
