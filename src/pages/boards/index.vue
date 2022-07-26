@@ -24,15 +24,12 @@ const { mutate: createBoard } = useMutation(createBoardMutation, () => ({
 }));
 
 
-// function createBoard() {
-//   alerts.success("Board created!");
-// }
 const newBoardPayload = {
   data: {
     title: "Test board 2",
   },
 };
-const getCoolGradient = (index) => {
+const getCoolGradient = (index: any) => {
   let finalGradientString = "";
   switch (index) {
     case 1:

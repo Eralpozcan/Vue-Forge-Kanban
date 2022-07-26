@@ -1,9 +1,6 @@
+#import "../fragments/board.fragment.gql"
 mutation createBoard($data: BoardCreateInput!) {
   boardCreate(data: $data) {
-    id
-    title
-    image {
-      downloadUrl
-    }
+    ...Board
   }
 }

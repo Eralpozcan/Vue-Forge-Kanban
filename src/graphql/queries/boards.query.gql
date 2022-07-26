@@ -1,12 +1,8 @@
-
+#import "../fragments/board.fragment.gql"
 query BoardsList {
   boardsList {
     items {
-      id
-      title
-      image {
-        downloadUrl
-      }
+      ...Board
     }
   }
 }
