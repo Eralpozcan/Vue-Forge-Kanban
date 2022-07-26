@@ -2,14 +2,17 @@
 import { useAlerts } from "@/stores/alerts";
 import type { Board } from "@/types";
 import { ref } from "vue";
+
 import boardsQuery from "@/graphql/queries/boards.query.gql";
 import createBoardMutation from "@/graphql/mutations/createBoard.mutation.gql";
 import { useMutation, useQuery } from "@vue/apollo-composable";
 import { computed } from "@vue/reactivity";
 const { result, loading, onError } = useQuery(boardsQuery);
+console.log(result);
 const boards = computed(() => result.value?.boardsList?.items || []);
 const alerts = useAlerts();
 onError(() => alerts.error("Error loading boards"));
+
 const { mutate: createBoard } = useMutation(createBoardMutation, () => ({
   update(cache, { data: { boardCreate } }) {
     cache.updateQuery({ query: boardsQuery }, (res) => ({
@@ -19,6 +22,8 @@ const { mutate: createBoard } = useMutation(createBoardMutation, () => ({
     }));
   },
 }));
+
+
 // function createBoard() {
 //   alerts.success("Board created!");
 // }

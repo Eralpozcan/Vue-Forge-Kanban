@@ -1,7 +1,12 @@
+
 query BoardsList {
   boardsList {
     items {
-      ...Board
+      id
+      title
+      image {
+        downloadUrl
+      }
     }
   }
 }
