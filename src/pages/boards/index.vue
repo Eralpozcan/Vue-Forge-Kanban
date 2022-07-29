@@ -1,18 +1,13 @@
 <script setup lang="ts">
 import { useAlerts } from "@/stores/alerts";
-import type { Board } from "@/types";
-import { ref } from "vue";
-
 import boardsQuery from "@/graphql/queries/boards.query.gql";
 import createBoardMutation from "@/graphql/mutations/createBoard.mutation.gql";
 import { useMutation, useQuery } from "@vue/apollo-composable";
-import { computed } from "@vue/reactivity";
+import { computed } from "vue";
 const { result, loading, onError } = useQuery(boardsQuery);
-console.log(result);
 const boards = computed(() => result.value?.boardsList?.items || []);
 const alerts = useAlerts();
 onError(() => alerts.error("Error loading boards"));
-
 const { mutate: createBoard } = useMutation(createBoardMutation, () => ({
   update(cache, { data: { boardCreate } }) {
     cache.updateQuery({ query: boardsQuery }, (res) => ({
@@ -23,13 +18,12 @@ const { mutate: createBoard } = useMutation(createBoardMutation, () => ({
   },
 }));
 
-
 const newBoardPayload = {
   data: {
     title: "Test board 2",
   },
 };
-const getCoolGradient = (index: any) => {
+const getCoolGradient = (index) => {
   let finalGradientString = "";
   switch (index) {
     case 1:
@@ -66,5 +60,5 @@ const getCoolGradient = (index: any) => {
       <span>New Board +</span>
     </button>
   </div>
-  <p v-if="loading">Loading...</p>
+  <AppLoader v-if="loading" :overlay="true" />
 </template>

@@ -1,8 +1,23 @@
-#import "../fragments/board.fragment.gql"
-query BoardsList {
-  boardsList {
-    items {
-      ...Board
+query getBoard($id: ID) {
+  board(id: $id) {
+    id
+    title
+    order
+    createdAt
+    updatedAt
+    image {
+      id
+      downloadUrl
+    }
+    tasks {
+      items {
+        id
+        title
+        description
+        createdAt
+        updatedAt
+        dueAt
+      }
     }
   }
 }
